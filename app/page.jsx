@@ -1,8 +1,8 @@
 // Memora OS — Personal AI Operating System landing page.
 // Tailwind CSS only. Server Component (TopNav is the only client piece).
 
-import Link from "next/link";
 import TopNav from "@/components/TopNav";
+import { APP_URL } from "@/lib/config";
 
 /* ── header icons (inline SVG, no external icon lib) ───────────── */
 const svg = "h-4 w-4";
@@ -365,12 +365,12 @@ export default function MemoraLanding() {
           A system that remembers you, understands your goals, and guides your life with intelligence.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="/app"
+          <a
+            href={APP_URL}
             className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_30px_-6px_rgba(99,102,241,0.6)] transition hover:opacity-90 hover:shadow-[0_8px_40px_-4px_rgba(99,102,241,0.85)]"
           >
             Initialize Memora
-          </Link>
+          </a>
           <a
             href="#system"
             className="rounded-xl border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white/80 backdrop-blur transition hover:border-white/30 hover:bg-white/10"

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { APP_URL } from "@/lib/config";
 
 const NAV = [
   { label: "System", href: "#system" },
@@ -34,6 +35,12 @@ export default function TopNav() {
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
             <span className="font-mono text-[11px] text-white/40">System Online</span>
           </span>
+          <a
+            href={APP_URL}
+            className="rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-2 text-[13px] font-semibold text-white shadow-[0_4px_20px_-6px_rgba(99,102,241,0.6)] transition hover:opacity-90"
+          >
+            Launch App
+          </a>
         </nav>
 
         {/* mobile hamburger */}
@@ -72,6 +79,13 @@ export default function TopNav() {
                 {n.label}
               </a>
             ))}
+            <a
+              href={APP_URL}
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-3 py-2.5 text-center text-sm font-semibold text-white"
+            >
+              Launch App
+            </a>
           </div>
         </nav>
       )}
