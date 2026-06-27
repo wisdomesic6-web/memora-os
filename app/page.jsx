@@ -2,7 +2,7 @@
 // Tailwind CSS only. Server Component (TopNav is the only client piece).
 
 import TopNav from "@/components/TopNav";
-import { APP_URL } from "@/lib/config";
+import { APP_URL, WHATSAPP_URL } from "@/lib/config";
 
 /* ── header icons (inline SVG, no external icon lib) ───────────── */
 const svg = "h-4 w-4";
@@ -26,14 +26,17 @@ const IconChat = () => (
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
   </svg>
 );
-const IconActivity = () => (
+const IconSearch = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={svg}>
-    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3" />
   </svg>
 );
-const IconZap = () => (
+const IconMic = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={svg}>
-    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
+    <rect x="9" y="2" width="6" height="12" rx="3" />
+    <path d="M5 10a7 7 0 0 0 14 0" />
+    <path d="M12 19v3" />
   </svg>
 );
 
@@ -91,8 +94,8 @@ function MemoraCore() {
 function IntelligenceDashboard() {
   const stats = [
     { v: "1,840", l: "Memories" },
-    { v: "92", l: "Goals" },
-    { v: "24/7", l: "Active" },
+    { v: "320", l: "Sources cited" },
+    { v: "24/7", l: "Available" },
     { v: "45+", l: "Skills" },
   ];
   return (
@@ -130,17 +133,14 @@ function DigitalAssistant() {
   return (
     <div className="flex h-full flex-col">
       <div className="flex-1 space-y-2">
-        <div className="max-w-[88%] rounded-lg rounded-tl-sm border border-white/10 bg-white/5 px-2.5 py-1.5 text-[11px] leading-snug text-white/70">
-          Good morning. How can I help?
-        </div>
         <div className="ml-auto max-w-[88%] rounded-lg rounded-tr-sm bg-gradient-to-br from-indigo-500 to-violet-500 px-2.5 py-1.5 text-[11px] leading-snug text-white">
-          Summarize my week
+          Draft a reply to Ada about the proposal
         </div>
         <div className="max-w-[92%] rounded-lg rounded-tl-sm border border-white/10 bg-white/5 px-2.5 py-1.5 text-[11px] leading-snug text-white/70">
-          You hit 4 of 5 goals. Energy peaked Tuesday.
+          Done — using your usual tone and the pricing we discussed for her last project.
         </div>
         <div className="ml-auto max-w-[88%] rounded-lg rounded-tr-sm bg-gradient-to-br from-indigo-500 to-violet-500 px-2.5 py-1.5 text-[11px] leading-snug text-white">
-          What should I focus on?
+          Perfect — it remembered.
         </div>
       </div>
       <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5">
@@ -155,90 +155,79 @@ function DigitalAssistant() {
   );
 }
 
-/* ── panel 4: Pulse (life tracking) ────────────────────────────── */
-function PulseSystem() {
-  const metrics = [
-    { l: "Focus", v: "82%", w: "w-[82%]", c: "from-cyan-400 to-indigo-400" },
-    { l: "Energy", v: "68%", w: "w-[68%]", c: "from-violet-400 to-indigo-400" },
-  ];
-  const events = [
-    { t: "Morning routine", s: "07:30" },
-    { t: "Deep work block", s: "09:00" },
-    { t: "Reflection logged", s: "21:00" },
-  ];
+/* ── panel 4: Live Web Search (with citations) ─────────────────── */
+function WebSearchPanel() {
+  const sources = ["reuters.com", "techcrunch.com", "gov.ng"];
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 gap-2">
-        {metrics.map((m) => (
-          <div key={m.l} className="rounded-lg border border-white/10 bg-white/5 p-2">
-            <div className="text-[10px] text-white/40">{m.l}</div>
-            <div className="text-sm font-semibold text-white">{m.v}</div>
-            <div className="mt-1.5 h-1 rounded-full bg-white/10">
-              <div className={`h-1 ${m.w} rounded-full bg-gradient-to-r ${m.c}`} />
-            </div>
-          </div>
-        ))}
+      <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5">
+        <span className="text-indigo-300">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </span>
+        <span className="text-[11px] text-white/60">Latest on the topic…</span>
+        <span className="ml-auto font-mono text-[9px] uppercase tracking-wider text-emerald-400">live</span>
       </div>
-      <div className="space-y-2.5 border-l border-white/10 pl-3">
-        {events.map((e) => (
-          <div key={e.t} className="relative">
-            <span className="absolute -left-[15px] top-1 h-2 w-2 rounded-full bg-indigo-400 ring-2 ring-[#05070f]" />
-            <div className="text-[11px] text-white/70">{e.t}</div>
-            <div className="font-mono text-[10px] text-white/30">{e.s}</div>
-          </div>
-        ))}
+      <div className="space-y-1.5 rounded-lg border border-white/10 bg-white/5 p-2.5">
+        <div className="h-1.5 w-full rounded bg-white/15" />
+        <div className="h-1.5 w-11/12 rounded bg-white/10" />
+        <div className="h-1.5 w-4/5 rounded bg-white/10" />
+      </div>
+      <div>
+        <div className="mb-1.5 text-[10px] text-white/40">Sources</div>
+        <div className="flex flex-wrap gap-1.5">
+          {sources.map((s, i) => (
+            <span key={s} className="flex items-center gap-1 rounded-md border border-indigo-400/20 bg-indigo-500/10 px-1.5 py-0.5 text-[10px] text-indigo-200">
+              <span className="font-mono text-indigo-300/70">[{i + 1}]</span>
+              {s}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-/* ── panel 5: Action Engine (execution) ────────────────────────── */
-function ActionEngine() {
-  const tasks = [
-    { label: "Draft Q3 plan", done: true },
-    { label: "Review goals", done: true },
-    { label: "Schedule deep work", active: true },
-    { label: "Outline follow-ups" },
-  ];
+/* ── panel 5: Voice, Vision & Export ────────────────────────────── */
+function VoiceVisionPanel() {
+  const bars = ["h-2", "h-4", "h-6", "h-3", "h-5", "h-2", "h-4", "h-6", "h-3", "h-2"];
   return (
-    <div className="space-y-2">
-      {tasks.map((t) => (
-        <div
-          key={t.label}
-          className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 transition-colors ${
-            t.active
-              ? "border-indigo-400/40 bg-indigo-500/10 shadow-[0_0_24px_-8px_rgba(99,102,241,0.7)]"
-              : "border-white/10 bg-white/5"
-          }`}
-        >
-          <span
-            className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-[5px] border ${
-              t.done
-                ? "border-emerald-400/50 bg-emerald-400/20 text-emerald-300"
-                : t.active
-                ? "border-indigo-400/60"
-                : "border-white/15"
-            }`}
-          >
-            {t.done && (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="h-2.5 w-2.5">
-                <path d="m5 12 5 5L20 7" />
-              </svg>
-            )}
-            {t.active && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-400" />}
-          </span>
-          <span className={`flex-1 text-[11px] ${t.done ? "text-white/40 line-through" : "text-white/80"}`}>{t.label}</span>
-          {t.active && <span className="font-mono text-[9px] uppercase tracking-wider text-indigo-300">Running</span>}
+    <div className="space-y-3">
+      {/* voice in/out */}
+      <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-2 text-indigo-300">
+        <IconMic />
+        <div className="flex flex-1 items-end gap-0.5">
+          {bars.map((h, i) => (
+            <span key={i} className={`w-1 ${h} rounded-full bg-gradient-to-t from-indigo-400 to-violet-400`} />
+          ))}
         </div>
-      ))}
-      <div className="rounded-lg border border-white/10 bg-white/5 p-2">
-        <div className="mb-1 flex justify-between text-[10px] text-white/40">
-          <span>Execution</span>
-          <span>3 / 5</span>
-        </div>
-        <div className="h-1 rounded-full bg-white/10">
-          <div className="h-1 w-3/5 rounded-full bg-gradient-to-r from-indigo-400 to-violet-400" />
-        </div>
+        <span className="font-mono text-[9px] uppercase tracking-wider text-white/40">voice</span>
+      </div>
+      {/* image vision */}
+      <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-2">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-cyan-400/30 to-indigo-500/30 text-cyan-200">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="9" cy="9" r="1.5" />
+            <path d="m21 15-5-5L5 21" />
+          </svg>
+        </span>
+        <span className="text-[11px] text-white/70">Reads your screenshots &amp; photos</span>
+      </div>
+      {/* PDF export */}
+      <div className="flex items-center gap-2 rounded-lg border border-indigo-400/30 bg-indigo-500/10 px-2.5 py-2 shadow-[0_0_24px_-10px_rgba(99,102,241,0.7)]">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/5 text-indigo-200">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+            <path d="M14 2v6h6" />
+            <path d="M12 18v-6" />
+            <path d="m9 15 3 3 3-3" />
+          </svg>
+        </span>
+        <span className="flex-1 text-[11px] text-white/80">Export any answer to PDF</span>
+        <span className="font-mono text-[9px] uppercase tracking-wider text-indigo-300">1 tap</span>
       </div>
     </div>
   );
@@ -246,7 +235,7 @@ function ActionEngine() {
 
 /* ── boot-sequence strip ───────────────────────────────────────── */
 function BootStrip() {
-  const modules = ["memory.core", "intelligence", "assistant", "pulse", "action.engine"];
+  const modules = ["memory.core", "intelligence", "assistant", "web.search", "voice.vision"];
   return (
     <div className="relative z-10 mx-auto max-w-7xl px-6 pb-12">
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 font-mono text-[11px] backdrop-blur-xl">
@@ -270,8 +259,8 @@ function BootStrip() {
 /* ── "evolves with you" timeline ───────────────────────────────── */
 function EvolveTimeline() {
   const steps = [
-    { t: "Day 1", h: "Learns your identity", d: "Captures who you are — values, preferences, context." },
-    { t: "Week 1", h: "Maps your goals", d: "Connects daily actions to where you're headed." },
+    { t: "Day 1", h: "Learns who you are", d: "Captures your role, your business, and how you like to work." },
+    { t: "Week 1", h: "Learns your business", d: "Remembers your clients, projects, and the details you share." },
     { t: "Month 1", h: "Knows your context", d: "Recalls exactly what matters the moment you ask." },
     { t: "Ongoing", h: "Your second brain", d: "Compounds context the longer you use it." },
   ];
@@ -438,6 +427,26 @@ function Pricing() {
         <p className="mx-auto mt-3 max-w-md text-sm text-white/50">Start free. Upgrade when your business runs on it.</p>
       </div>
 
+      {/* Founding Member offer */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mb-8 flex flex-col items-center justify-center gap-2 rounded-2xl border border-emerald-400/30 bg-emerald-500/[0.08] px-6 py-4 text-center backdrop-blur-xl transition hover:bg-emerald-500/[0.12] sm:flex-row sm:gap-4"
+      >
+        <span className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-white">
+          Founding offer
+        </span>
+        <span className="text-sm text-white/80">
+          First <span className="font-semibold text-white">10 members</span> get{" "}
+          <span className="font-semibold text-emerald-300">50% off for 3 months</span> — try it free
+          for 7 days, then ₦7,500/mo.
+        </span>
+        <span className="font-semibold text-emerald-300 underline-offset-4 group-hover:underline">
+          Claim on WhatsApp →
+        </span>
+      </a>
+
       <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-4">
         {TIERS.map((t) => (
           <PriceCard key={t.name} t={t} />
@@ -469,7 +478,7 @@ function Pricing() {
             </div>
             <div className="text-sm text-white/55">then ₦50,000<span className="text-white/40">/mo</span></div>
           </div>
-          <a href={APP_URL} className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90">
             Talk to us
           </a>
         </div>
@@ -484,8 +493,8 @@ export default function MemoraLanding() {
     { title: "Memora Core", icon: <IconLayers />, body: <MemoraCore /> },
     { title: "Intelligence Dashboard", icon: <IconChart />, body: <IntelligenceDashboard /> },
     { title: "Digital Assistant", icon: <IconChat />, body: <DigitalAssistant /> },
-    { title: "Pulse", icon: <IconActivity />, body: <PulseSystem /> },
-    { title: "Action Engine", icon: <IconZap />, body: <ActionEngine /> },
+    { title: "Live Web Search", icon: <IconSearch />, body: <WebSearchPanel /> },
+    { title: "Voice, Vision & PDF", icon: <IconMic />, body: <VoiceVisionPanel /> },
   ];
 
   return (
@@ -507,27 +516,38 @@ export default function MemoraLanding() {
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">Personal AI Infrastructure</span>
         </div>
         <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
-          Your Personal AI
+          The AI that remembers
           <br />
-          <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">Operating System</span>
+          <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">your business</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
-          A system that remembers you, understands your goals, and guides your life with intelligence.
+          ChatGPT forgets you every time. Memora OS remembers your work, your clients, and your
+          context — so you stop re-explaining yourself. Live web search with sources, voice, and
+          image vision built in.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <a
             href={APP_URL}
             className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_30px_-6px_rgba(99,102,241,0.6)] transition hover:opacity-90 hover:shadow-[0_8px_40px_-4px_rgba(99,102,241,0.85)]"
           >
-            Initialize Memora
+            Start free
           </a>
           <a
             href="#system"
             className="rounded-xl border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white/80 backdrop-blur transition hover:border-white/30 hover:bg-white/10"
           >
-            View System
+            See how it works
           </a>
         </div>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1.5 text-[12px] text-emerald-200 transition hover:bg-emerald-500/15"
+        >
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+          🚀 Founding Member: first 10 get 50% off for 3 months — chat us on WhatsApp
+        </a>
       </section>
 
       {/* boot strip */}
