@@ -2,6 +2,7 @@
 // Tailwind CSS only. Server Component (TopNav is the only client piece).
 
 import TopNav from "@/components/TopNav";
+import Testimonials from "@/components/Testimonials";
 import { APP_URL, WHATSAPP_URL } from "@/lib/config";
 
 /* ── header icons (inline SVG, no external icon lib) ───────────── */
@@ -303,6 +304,7 @@ function Footer() {
         <nav className="flex items-center gap-6 text-[13px] text-white/50">
           <a href="#system" className="transition hover:text-white">System</a>
           <a href="#evolve" className="transition hover:text-white">Evolve</a>
+          <a href="#reviews" className="transition hover:text-white">Reviews</a>
           <a href="#pricing" className="transition hover:text-white">Pricing</a>
         </nav>
         <div className="flex items-center gap-2">
@@ -566,6 +568,9 @@ export default function MemoraLanding() {
 
       {/* evolve timeline */}
       <EvolveTimeline />
+
+      {/* social proof */}
+      <Testimonials />
 
       {/* pricing */}
       <Pricing />

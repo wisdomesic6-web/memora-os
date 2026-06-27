@@ -7,6 +7,7 @@ import { APP_URL } from "@/lib/config";
 const NAV = [
   { label: "System", href: "#system" },
   { label: "Evolve", href: "#evolve" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Pricing", href: "#pricing" },
 ];
 
