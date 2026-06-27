@@ -198,7 +198,7 @@ function ActionEngine() {
     { label: "Draft Q3 plan", done: true },
     { label: "Review goals", done: true },
     { label: "Schedule deep work", active: true },
-    { label: "Send follow-ups" },
+    { label: "Outline follow-ups" },
   ];
   return (
     <div className="space-y-2">
@@ -272,7 +272,7 @@ function EvolveTimeline() {
   const steps = [
     { t: "Day 1", h: "Learns your identity", d: "Captures who you are — values, preferences, context." },
     { t: "Week 1", h: "Maps your goals", d: "Connects daily actions to where you're headed." },
-    { t: "Month 1", h: "Anticipates needs", d: "Surfaces the right thing before you ask." },
+    { t: "Month 1", h: "Knows your context", d: "Recalls exactly what matters the moment you ask." },
     { t: "Ongoing", h: "Your second brain", d: "Compounds context the longer you use it." },
   ];
   return (
@@ -314,7 +314,7 @@ function Footer() {
         <nav className="flex items-center gap-6 text-[13px] text-white/50">
           <a href="#system" className="transition hover:text-white">System</a>
           <a href="#evolve" className="transition hover:text-white">Evolve</a>
-          <a href="#" className="transition hover:text-white">Docs</a>
+          <a href="#pricing" className="transition hover:text-white">Pricing</a>
         </nav>
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
@@ -325,6 +325,156 @@ function Footer() {
         © 2026 Memora OS — Personal AI Infrastructure
       </div>
     </footer>
+  );
+}
+
+/* ── pricing ───────────────────────────────────────────────────── */
+const TIERS = [
+  {
+    name: "Free",
+    price: "₦0",
+    cadence: "/mo",
+    blurb: "A live demo of the system.",
+    cta: "Start free",
+    features: [
+      "25 messages / day",
+      "Business memory across sessions",
+      "Voice in & out",
+      "Image vision",
+    ],
+  },
+  {
+    name: "Starter",
+    price: "₦15,000",
+    cadence: "/mo",
+    blurb: "For solo operators & freelancers.",
+    cta: "Choose Starter",
+    features: [
+      "Everything in Free",
+      "Live web search with citations",
+      "Custom skills",
+      "Voice, image & higher limits",
+    ],
+  },
+  {
+    name: "Business",
+    price: "₦35,000",
+    cadence: "/mo",
+    blurb: "For teams running on shared context.",
+    cta: "Choose Business",
+    popular: true,
+    features: [
+      "Everything in Starter",
+      "Team access — shared business memory",
+      "Live web search with citations",
+      "Custom skills, voice & image vision",
+    ],
+  },
+  {
+    name: "Team / Pro",
+    price: "₦75,000",
+    cadence: "/mo",
+    blurb: "For bigger teams.",
+    cta: "Choose Team",
+    features: [
+      "Everything in Business",
+      "More team seats",
+      "Your data in your own system",
+      "Priority support",
+    ],
+  },
+];
+
+function PriceCard({ t }) {
+  return (
+    <div
+      className={`relative flex h-full flex-col rounded-2xl border p-6 backdrop-blur-xl ${
+        t.popular
+          ? "border-indigo-400/40 bg-indigo-500/[0.07] shadow-[0_0_44px_-12px_rgba(99,102,241,0.6)]"
+          : "border-white/10 bg-white/5"
+      }`}
+    >
+      {t.popular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-white">
+          Most popular
+        </span>
+      )}
+      <h3 className="text-sm font-semibold text-white">{t.name}</h3>
+      <p className="mt-1 text-[12px] text-white/45">{t.blurb}</p>
+      <div className="mt-4 flex items-baseline gap-1">
+        <span className="text-3xl font-bold tracking-tight">{t.price}</span>
+        <span className="text-[12px] text-white/40">{t.cadence}</span>
+      </div>
+      <ul className="mt-5 flex-1 space-y-2.5">
+        {t.features.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-[13px] text-white/70">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-300">
+              <path d="m5 12 5 5L20 7" />
+            </svg>
+            {f}
+          </li>
+        ))}
+      </ul>
+      <a
+        href={APP_URL}
+        className={`mt-6 rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition ${
+          t.popular
+            ? "bg-gradient-to-r from-indigo-500 to-violet-500 text-white hover:opacity-90"
+            : "border border-white/15 bg-white/5 text-white/80 hover:border-white/30 hover:bg-white/10"
+        }`}
+      >
+        {t.cta}
+      </a>
+    </div>
+  );
+}
+
+function Pricing() {
+  return (
+    <section id="pricing" className="scroll-mt-24 relative z-10 mx-auto max-w-7xl px-6 pb-28">
+      <div className="mb-12 text-center">
+        <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-indigo-300/70">Pricing</span>
+        <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Plans that scale with you</h2>
+        <p className="mx-auto mt-3 max-w-md text-sm text-white/50">Start free. Upgrade when your business runs on it.</p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-4">
+        {TIERS.map((t) => (
+          <PriceCard key={t.name} t={t} />
+        ))}
+      </div>
+
+      {/* Done-for-you (5th tier) */}
+      <div className="mt-4 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-7 backdrop-blur-xl md:flex-row md:items-center">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-white">Done-for-you</h3>
+            <span className="rounded-full border border-indigo-400/30 bg-indigo-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-indigo-200">Premium</span>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-white/55">
+            We build it for you — custom skills, your business memory loaded in, and your whole
+            team onboarded, set up in your own system.
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-white/65">
+            <li>• Custom skills built for you</li>
+            <li>• Business memory loaded</li>
+            <li>• Team onboarded</li>
+            <li>• Data in your own system</li>
+          </ul>
+        </div>
+        <div className="flex shrink-0 flex-col items-start gap-3 md:items-end">
+          <div className="md:text-right">
+            <div className="text-2xl font-bold tracking-tight">
+              ₦150,000 <span className="text-sm font-normal text-white/45">setup</span>
+            </div>
+            <div className="text-sm text-white/55">then ₦50,000<span className="text-white/40">/mo</span></div>
+          </div>
+          <a href={APP_URL} className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90">
+            Talk to us
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -396,6 +546,9 @@ export default function MemoraLanding() {
 
       {/* evolve timeline */}
       <EvolveTimeline />
+
+      {/* pricing */}
+      <Pricing />
 
       {/* footer */}
       <Footer />
