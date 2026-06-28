@@ -523,7 +523,7 @@ export default function MemoraLanding() {
           <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">your business</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
-          ChatGPT forgets you every time. Memora OS remembers your work, your clients, and your
+          Most AI forgets you every time. Memora OS remembers your work, your clients, and your
           context — so you stop re-explaining yourself. Live web search with sources, voice, and
           image vision built in.
         </p>
