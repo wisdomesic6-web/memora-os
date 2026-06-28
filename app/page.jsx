@@ -313,7 +313,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-white/5 py-4 text-center font-mono text-[11px] text-white/25">
-        © 2026 Memora OS — Personal AI Infrastructure
+        © 2026 Memora OS — Business AI
       </div>
     </footer>
   );
@@ -440,9 +440,9 @@ function Pricing() {
           Founding offer
         </span>
         <span className="text-sm text-white/80">
-          First <span className="font-semibold text-white">10 members</span> get{" "}
-          <span className="font-semibold text-emerald-300">50% off for 3 months</span> — try it free
-          for 7 days, then ₦7,500/mo.
+          First <span className="font-semibold text-white">10 members</span>:{" "}
+          <span className="font-semibold text-emerald-300">50% off Starter for 3 months</span> — then
+          ₦7,500/mo <span className="text-white/50">(normally ₦15,000)</span>. Free 7-day trial.
         </span>
         <span className="font-semibold text-emerald-300 underline-offset-4 group-hover:underline">
           Claim on WhatsApp →
@@ -515,7 +515,7 @@ export default function MemoraLanding() {
       <section className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 pb-16 pt-32 text-center sm:pt-40">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">Personal AI Infrastructure</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">Business AI</span>
         </div>
         <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
           The AI that remembers

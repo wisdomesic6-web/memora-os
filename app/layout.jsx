@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Memora OS — Personal AI Operating System",
+  title: "Memora OS — Business AI",
   description:
-    "A system that remembers you, understands your goals, and guides your life with intelligence.",
+    "The AI that remembers your business — your work, your clients, and your context — so you stop re-explaining yourself.",
 };
 
 export default function RootLayout({ children }) {
